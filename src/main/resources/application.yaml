@@ -1,0 +1,8 @@
+spring:
+  main:
+    banner-mode: off
+
+  datasource:
+    url:
+    username: root
+    password: 123123
