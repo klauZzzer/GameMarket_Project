@@ -7,10 +7,14 @@ spring:
     username: root
     password: Yulia2112
 
-  sql:
-    init:
-      data-locations:
-        classpath: db/data.sql
-      schema-locations:
-        classpath: db/schema.sql
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+#  sql:
+#    init:
+#      data-locations:
+#        classpath: db/data.sql
+#      schema-locations:
+#        classpath: db/schema.sql
 
