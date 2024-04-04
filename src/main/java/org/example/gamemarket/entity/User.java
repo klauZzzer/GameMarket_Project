@@ -28,23 +28,26 @@ public class User {
     @Column(name = "balance")
     private BigDecimal balance;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_info_id")
     private UserInfo userInfo;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "shopping_cart_id")
     private Cart shoppingCart;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",
+            fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     private Set<Order> orders;
 
-    @ManyToMany
-    @JoinColumn(name = "game_id")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "users_favorite_games",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> favoriteGames;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JoinColumn(name = "review_id")
     private Set<Review> reviews;
 

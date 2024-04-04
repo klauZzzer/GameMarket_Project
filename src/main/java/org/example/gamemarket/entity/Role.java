@@ -22,11 +22,14 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "name")
     private RoleName name;
 
-    @ManyToMany
-    @JoinColumn(name = "authoritie_id")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "roles_authorities",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private Set<Authority> authorities;
 
     @Override

@@ -28,7 +28,8 @@ public class Developer {
     @Column(name = "creation_date")
     private LocalDate creationDate;
 
-    @OneToMany(mappedBy = "developer")
+    @OneToMany(mappedBy = "developer",
+            fetch = FetchType.EAGER)
     @JoinColumn(name = "game_id")
     private Set<Game> developedGames;
 

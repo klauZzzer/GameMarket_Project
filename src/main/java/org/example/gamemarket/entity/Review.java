@@ -24,14 +24,15 @@ public class Review {
     @Column(name = "comment")
     private String comment;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "stars")
     private RatingStar stars;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_id")
     private Game game;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

@@ -25,17 +25,19 @@ public class Order {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany
-    @JoinColumn(name = "game_id")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "order_games",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> games;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "promo_code_id")
-    private Promocode promoCode;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "promocode_id")
+    private Promocode promocode;
 
     @Override
     public boolean equals(Object o) {

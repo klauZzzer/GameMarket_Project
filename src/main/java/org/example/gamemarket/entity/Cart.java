@@ -25,8 +25,10 @@ public class Cart {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany
-    @JoinColumn(name = "game_id")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "carts_games",
+            joinColumns = @JoinColumn(name = "cart_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> games;
 
     @Override

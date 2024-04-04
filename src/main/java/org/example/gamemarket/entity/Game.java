@@ -36,14 +36,19 @@ public class Game {
     @Column(name = "sales")
     private Integer sales;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "developer_id")
     private Developer developer;
 
+    @ElementCollection(targetClass = Genre.class)
+    @CollectionTable(name = "game_genres",
+            joinColumns = @JoinColumn(name = "game_id"))
+    @Enumerated(EnumType.STRING)
     @Column(name = "genre")
     private Set<Genre> genres;
 
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "game",
+            fetch = FetchType.EAGER)
     @JoinColumn(name = "review_id")
     private Set<Review> reviews;
 
