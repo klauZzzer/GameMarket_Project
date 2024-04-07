@@ -37,7 +37,6 @@ public class Promocode {
 
     @OneToMany(mappedBy = "promocode",
             fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
     private Set<Order> orders;
 
     @Override

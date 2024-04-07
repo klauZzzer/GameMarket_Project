@@ -9,5 +9,10 @@
       "name": "spring.sql.init.schema-locations.classpath",
       "type": "java.lang.String",
       "description": "Description for spring.sql.init.schema-locations.classpath."
+    },
+    {
+      "name": "spring.server.port",
+      "type": "java.lang.String",
+      "description": "Description for spring.server.port."
     }
   ] }

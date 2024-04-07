@@ -9,12 +9,14 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
-#  sql:
-#    init:
-#      data-locations:
-#        classpath: db/data.sql
-#      schema-locations:
-#        classpath: db/schema.sql
+  sql:
+    init:
+      data-locations:
+        classpath: db/data.sql
+      schema-locations:
+        classpath: db/schema.sql
 
+server:
+  port: 8081

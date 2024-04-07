@@ -33,12 +33,11 @@ public class User {
     private UserInfo userInfo;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "shopping_cart_id")
+    @JoinColumn(name = "cart_id")
     private Cart shoppingCart;
 
     @OneToMany(mappedBy = "user",
             fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
     private Set<Order> orders;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -48,7 +47,6 @@ public class User {
     private Set<Game> favoriteGames;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    @JoinColumn(name = "review_id")
     private Set<Review> reviews;
 
     @Override

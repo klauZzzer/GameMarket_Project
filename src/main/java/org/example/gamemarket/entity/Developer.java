@@ -30,7 +30,6 @@ public class Developer {
 
     @OneToMany(mappedBy = "developer",
             fetch = FetchType.EAGER)
-    @JoinColumn(name = "game_id")
     private Set<Game> developedGames;
 
     @Override
