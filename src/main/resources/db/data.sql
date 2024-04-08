@@ -1,8 +1,8 @@
 INSERT INTO authorities (id, authority)
 VALUES
-    ('fc698b8c-f835-4800-b633-2f7905bfa238', 'ROLE_ADMIN'),
-    ('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6', 'ROLE_USER'),
-    ('93de1a91-9de3-4126-9981-eec527bb998b', 'ROLE_DEVELOPER');
+    ('fc698b8c-f835-4800-b633-2f7905bfa238', 'R'),
+    ('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6', 'W'),
+    ('93de1a91-9de3-4126-9981-eec527bb998b', 'I');
 
 INSERT INTO carts (id, price)
 VALUES
