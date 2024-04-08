@@ -1,30 +1,3 @@
-ALTER TABLE roles_authorities DROP FOREIGN KEY roles_authorities_ibfk_1;
-ALTER TABLE roles_authorities DROP FOREIGN KEY roles_authorities_ibfk_2;
-ALTER TABLE orders DROP FOREIGN KEY orders_ibfk_1;
-ALTER TABLE orders DROP FOREIGN KEY orders_ibfk_2;
-ALTER TABLE carts_games DROP FOREIGN KEY carts_games_ibfk_1;
-ALTER TABLE carts_games DROP FOREIGN KEY carts_games_ibfk_2;
-ALTER TABLE users_favorite_games DROP FOREIGN KEY users_favorite_games_ibfk_1;
-ALTER TABLE users_favorite_games DROP FOREIGN KEY users_favorite_games_ibfk_2;
-ALTER TABLE games DROP FOREIGN KEY games_ibfk_1;
-ALTER TABLE users DROP FOREIGN KEY users_ibfk_2;
-
-DROP TABLE IF EXISTS authorities;
-DROP TABLE IF EXISTS carts;
-DROP TABLE IF EXISTS developers;
-DROP TABLE IF EXISTS games;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS promocodes;
-DROP TABLE IF EXISTS reveiws;
-DROP TABLE IF EXISTS roles;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS users_info;
-DROP TABLE IF EXISTS roles_authorities;
-DROP TABLE IF EXISTS carts_games;
-DROP TABLE IF EXISTS game_genres;
-DROP TABLE IF EXISTS order_games;
-DROP TABLE IF EXISTS users_favorite_games;
-DROP TABLE IF EXISTS users_roles;
 
 CREATE TABLE IF NOT EXISTS authorities (
                              id VARCHAR(36) PRIMARY KEY,
@@ -60,15 +33,7 @@ CREATE TABLE IF NOT EXISTS promocodes (
                              quantity INT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS reviews (
-                         id VARCHAR(36) PRIMARY KEY,
-                         comment TEXT,
-                         stars VARCHAR(255) NOT NULL,
-                         game_id VARCHAR(36),
-                         user_id VARCHAR(36),
-                         FOREIGN KEY (game_id) REFERENCES games(id),
-                         FOREIGN KEY (user_id) REFERENCES users(id)
-);
+
 
 CREATE TABLE IF NOT EXISTS roles (
                        id VARCHAR(36) PRIMARY KEY,
@@ -89,6 +54,16 @@ CREATE TABLE IF NOT EXISTS users (
                                 cart_id VARCHAR(36),
                                 FOREIGN KEY (user_info_id) REFERENCES user_info(id),
                                 FOREIGN KEY (cart_id) REFERENCES carts(id)
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+                                       id VARCHAR(36) PRIMARY KEY,
+                                       comment TEXT,
+                                       stars VARCHAR(255) NOT NULL,
+                                       game_id VARCHAR(36),
+                                       user_id VARCHAR(36),
+                                       FOREIGN KEY (game_id) REFERENCES games(id),
+                                       FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS orders (
@@ -124,11 +99,12 @@ CREATE TABLE IF NOT EXISTS orders_games (
 );
 
 CREATE TABLE IF NOT EXISTS promocodes_orders (
-                                   promocode_id VARCHAR(36) NOT NULL,
-                                   order_id VARCHAR(36) NOT NULL,
-                                   PRIMARY KEY (promocode_id, order_id),
-                                   FOREIGN KEY (promocode_id) REFERENCES promocodes(id),
-                                   FOREIGN KEY (order_id) REFERENCES orders(id)
+                                                 promocode_id VARCHAR(36),
+                                                 order_id VARCHAR(36) NOT NULL,
+                                                 PRIMARY KEY (order_id),
+                                                 UNIQUE INDEX idx_promocode_order (promocode_id, order_id),
+                                                 FOREIGN KEY (promocode_id) REFERENCES promocodes(id),
+                                                 FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
 CREATE TABLE IF NOT EXISTS roles_authorities (

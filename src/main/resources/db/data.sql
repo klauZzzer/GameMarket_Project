@@ -76,10 +76,9 @@ VALUES
     ('93de1a91-9de3-4126-9981-eec527bb998b', '93de1a91-9de3-4126-9981-eec527bb998b');
 
 INSERT INTO promocodes_orders (promocode_id, order_id)
-VALUES
-    ('fc698b8c-f835-4800-b633-2f7905bfa238', 'fc698b8c-f835-4800-b633-2f7905bfa238'),
-    ('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6', '5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'),
-    ('93de1a91-9de3-4126-9981-eec527bb998b', '93de1a91-9de3-4126-9981-eec527bb998b');
+VALUES (NULL, 'fc698b8c-f835-4800-b633-2f7905bfa238'),
+       ('fc698b8c-f835-4800-b633-2f7905bfa238', '5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'),
+       (NULL, '93de1a91-9de3-4126-9981-eec527bb998b');
 
 INSERT INTO roles_authorities (role_id, authority_id)
 VALUES
