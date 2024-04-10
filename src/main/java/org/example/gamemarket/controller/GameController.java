@@ -2,7 +2,7 @@ package org.example.gamemarket.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.gamemarket.entity.Game;
-import org.example.gamemarket.service.impl.GameServiceImpl;
+import org.example.gamemarket.service.GameService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class GameController {
 
-    private final GameServiceImpl gameService;
+    private final GameService gameService;
 
     @GetMapping("/get/{id}")
     public Game getGameById(@PathVariable("id") UUID id) {
