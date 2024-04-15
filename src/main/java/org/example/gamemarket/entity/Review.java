@@ -24,7 +24,7 @@ public class Review {
     @Column(name = "comment")
     private String comment;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(name = "stars")
     private RatingStar stars;
 

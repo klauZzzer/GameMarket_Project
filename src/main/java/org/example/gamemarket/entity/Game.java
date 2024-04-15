@@ -1,17 +1,16 @@
 package org.example.gamemarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.gamemarket.entity.enums.Genre;
-import org.example.gamemarket.entity.enums.RatingStar;
-
+import org.example.gamemarket.entity.enums.GenreName;
 import java.math.BigDecimal;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -36,16 +35,19 @@ public class Game {
     @Column(name = "sales")
     private Integer sales;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "developer_id")
     private Developer developer;
 
-    @ElementCollection(targetClass = Genre.class)
-    @CollectionTable(name = "game_genres",
-            joinColumns = @JoinColumn(name = "game_id"))
-    @Enumerated(EnumType.STRING)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "game_genre",
+    joinColumns = @JoinColumn(name = "game_id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "game",
             fetch = FetchType.EAGER)
     private Set<Review> reviews;

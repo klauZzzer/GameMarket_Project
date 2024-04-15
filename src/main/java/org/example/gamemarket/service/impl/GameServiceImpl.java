@@ -17,4 +17,9 @@ public class GameServiceImpl implements GameService {
     public Game getGameById(UUID id) {
         return gameRepository.findGameById(id);
     }
+
+    @Override
+    public Game createGame(String name) {
+        return null;
+    }
 }

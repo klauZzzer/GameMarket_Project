@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface GameRepository extends JpaRepository<Game, UUID> {
     Game findGameById(UUID id);
+    Game save(Game game);
 }

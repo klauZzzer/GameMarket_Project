@@ -1,6 +1,6 @@
 package org.example.gamemarket.entity.enums;
 
-public enum Genre {
+public enum GenreName {
     ACTION,
     PLATFORM,
     SHOOTER,
