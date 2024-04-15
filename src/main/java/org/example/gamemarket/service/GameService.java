@@ -8,5 +8,5 @@ import java.util.UUID;
 public interface GameService {
     Game getGameById(UUID id);
 
-    Game createGame(String name);
+    Game createGame(Game game);
 }

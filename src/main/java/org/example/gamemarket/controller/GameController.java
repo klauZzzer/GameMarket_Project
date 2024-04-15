@@ -22,8 +22,16 @@ public class GameController {
     }
 
     @PostMapping("/createGame")
-    public ResponseEntity<String> createGame(@RequestBody CreateGameRequest request) {
-        return ResponseEntity.ok("Игра успешно создана");
+    public Game createGame(@RequestBody CreateGameRequest request) {
+        Game game = new Game();
+        game.setId(request.getId());
+        game.setName(request.getName());
+        game.setOverallRating(request.getOverallRating());
+        game.setPrice(request.getPrice());
+        game.setDeveloper(request.getDeveloper());
+        game.setGenres(request.getGenres());
+        game.setReviews(request.getReviews());
+        return gameService.createGame(game);
     };
 
 }

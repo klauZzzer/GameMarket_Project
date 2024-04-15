@@ -19,7 +19,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game createGame(String name) {
-        return null;
+    public Game createGame(Game game) {
+        return gameRepository.save(game);
     }
 }

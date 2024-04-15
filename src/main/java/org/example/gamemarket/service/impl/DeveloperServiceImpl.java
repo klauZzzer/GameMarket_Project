@@ -3,9 +3,7 @@ package org.example.gamemarket.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.repository.DeveloperRepository;
-import org.example.gamemarket.request.CreateDeveloperRequest;
 import org.example.gamemarket.service.DeveloperService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
