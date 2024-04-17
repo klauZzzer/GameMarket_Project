@@ -1,4 +1,4 @@
-package org.example.gamemarket.request;
+package org.example.gamemarket.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,13 +10,9 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class CreateDeveloperRequest {
-
-    private UUID id;
+public class CreateDeveloperDto {
 
     private String name;
 
     private LocalDate creationDate;
-
-    private Set<Game> developedGames;
 }

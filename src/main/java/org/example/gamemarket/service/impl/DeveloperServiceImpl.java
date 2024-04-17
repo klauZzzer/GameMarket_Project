@@ -1,6 +1,8 @@
 package org.example.gamemarket.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.example.gamemarket.dto.CreateDeveloperDto;
 import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.repository.DeveloperRepository;
 import org.example.gamemarket.service.DeveloperService;
@@ -20,7 +22,13 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public Developer createDeveloper(Developer developer) {
-        return developerRepository.save(developer);
+    @Transactional
+    public void deleteDeveloperById(UUID id) {
+        developerRepository.deleteDeveloperById(id);
+    }
+
+    @Override
+    public Developer createDeveloper(CreateDeveloperDto createDeveloperDto) {
+        return developerRepository.save(createDeveloperDto);
     }
 }

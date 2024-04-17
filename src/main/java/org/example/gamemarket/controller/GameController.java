@@ -2,9 +2,8 @@ package org.example.gamemarket.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.gamemarket.entity.Game;
-import org.example.gamemarket.request.CreateGameRequest;
+import org.example.gamemarket.dto.CreateGameDto;
 import org.example.gamemarket.service.GameService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -22,16 +21,8 @@ public class GameController {
     }
 
     @PostMapping("/createGame")
-    public Game createGame(@RequestBody CreateGameRequest request) {
-        Game game = new Game();
-        game.setId(request.getId());
-        game.setName(request.getName());
-        game.setOverallRating(request.getOverallRating());
-        game.setPrice(request.getPrice());
-        game.setDeveloper(request.getDeveloper());
-        game.setGenres(request.getGenres());
-        game.setReviews(request.getReviews());
-        return gameService.createGame(game);
-    };
+    public Game createGame(@RequestBody CreateGameDto request) {
+        return null;
+    }
 
 }
