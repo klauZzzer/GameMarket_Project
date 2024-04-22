@@ -8,7 +8,7 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface GameMapper {
-    Game toEntity(CreateGameDto createGameDto);
-
-    AfterCreationGameDto toDto(Game afterCreationGame);
+//    Game toEntity(CreateGameDto createGameDto);
+//
+//    AfterCreationGameDto toDto(Game afterCreationGame);
 }

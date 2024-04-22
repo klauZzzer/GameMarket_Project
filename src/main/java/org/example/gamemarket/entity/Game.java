@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.gamemarket.entity.enums.GenreName;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
@@ -36,12 +39,14 @@ public class Game {
     private Integer sales;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.DETACH)
     @JoinColumn(name = "developer_id")
     private Developer developer;
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.DETACH)
     @JoinTable(name = "game_genre",
     joinColumns = @JoinColumn(name = "game_id"),
     inverseJoinColumns = @JoinColumn(name = "genre_id"))
@@ -49,7 +54,8 @@ public class Game {
 
     @JsonIgnore
     @OneToMany(mappedBy = "game",
-            fetch = FetchType.EAGER)
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     private Set<Review> reviews;
 
     @Override

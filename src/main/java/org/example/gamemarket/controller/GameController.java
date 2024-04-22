@@ -20,9 +20,14 @@ public class GameController {
         return gameService.getGameById(id);
     }
 
-    @PostMapping("/createGame")
-    public Game createGame(@RequestBody CreateGameDto request) {
-        return null;
+    @DeleteMapping("/delete/{id}")
+    public void deleteGameById(@PathVariable("id") UUID id) {
+        gameService.deleteGameById(id);
     }
+
+//    @PostMapping("/createGame")
+//    public Game createGame(@RequestBody CreateGameDto request) {
+//        return null;
+//    }
 
 }

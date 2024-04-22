@@ -10,5 +10,7 @@ import java.util.UUID;
 public interface GameService {
     Game getGameById(UUID id);
 
-    AfterCreationGameDto createGame(CreateGameDto createGameDto);
+    void deleteGameById(UUID id);
+
+//    AfterCreationGameDto createGame(CreateGameDto createGameDto);
 }

@@ -28,11 +28,13 @@ public class Review {
     @Column(name = "stars")
     private RatingStar stars;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.DETACH)
     @JoinColumn(name = "game_id")
     private Game game;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id")
     private User user;
 

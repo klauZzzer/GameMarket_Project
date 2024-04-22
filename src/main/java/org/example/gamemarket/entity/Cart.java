@@ -25,7 +25,8 @@ public class Cart {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.DETACH)
     @JoinTable(name = "carts_games",
             joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id"))
