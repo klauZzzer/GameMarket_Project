@@ -13,15 +13,14 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Value
 public class CreateGameDto {
 
-    String name;
+    private String name;
 
-    BigDecimal price;
+    private BigDecimal price;
 
-    Developer developer;
+    private Developer developer;
 
-    Set<Genre> genres;
+    private Set<Genre> genres;
 
 }

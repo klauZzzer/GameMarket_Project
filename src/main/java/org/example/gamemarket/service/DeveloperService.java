@@ -13,5 +13,7 @@ public interface DeveloperService {
 
     void deleteDeveloperById(UUID id);
 
+    void updateDeveloperById(UUID id, Developer updatedDeveloper);
+
     AfterCreationDeveloperDto createDeveloper(CreateDeveloperDto createDeveloperDto);
 }

@@ -32,6 +32,11 @@ public class DeveloperController {
         developerService.deleteDeveloperById(id);
     }
 
+    @PostMapping("/update/{id}")
+    public void updateDeveloperById(@PathVariable("id") UUID id, @RequestBody Developer updatedDeveloper) {
+        developerService.updateDeveloperById(id, updatedDeveloper);
+    }
+
     @PostMapping("/create")
     public AfterCreationDeveloperDto createDeveloper(@RequestBody CreateDeveloperDto createDeveloperDto) {
         return developerService.createDeveloper(createDeveloperDto);

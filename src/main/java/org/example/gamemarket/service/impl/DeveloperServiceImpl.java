@@ -11,7 +11,6 @@ import org.example.gamemarket.mapper.DeveloperMapper;
 import org.example.gamemarket.repository.DeveloperRepository;
 import org.example.gamemarket.service.DeveloperService;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 @Service
@@ -20,7 +19,6 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     private final DeveloperRepository developerRepository;
     private final DeveloperMapper developerMapper;
-
     @Override
     public Developer getDeveloperById(UUID id) {
         return developerRepository.findDeveloperById(id);
@@ -38,6 +36,25 @@ public class DeveloperServiceImpl implements DeveloperService {
             throw new DeveloperDoesNotExistException(ErrorMessage.THIS_DEVELOPER_DOES_NOT_EXIST);
         }
         developerRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateDeveloperById(UUID id, Developer updatedDeveloper) {
+        Developer developer = developerRepository.findDeveloperById(id);
+        if (developer == null) {
+            throw new DeveloperDoesNotExistException(ErrorMessage.THIS_DEVELOPER_DOES_NOT_EXIST);
+        }
+        updatedDeveloper.setId(developer.getId());
+        if (updatedDeveloper.getName() == null) {
+            updatedDeveloper.setName(developer.getName());
+        }
+        if (updatedDeveloper.getCreationDate() == null) {
+            updatedDeveloper.setCreationDate(developer.getCreationDate());
+        }
+        if (updatedDeveloper.getDevelopedGames() == null) {
+            updatedDeveloper.setDevelopedGames(developer.getDevelopedGames());
+        }
+        developerRepository.save(updatedDeveloper);
     }
 
     @Override

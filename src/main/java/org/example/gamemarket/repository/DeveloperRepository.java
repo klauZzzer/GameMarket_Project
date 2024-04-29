@@ -13,6 +13,4 @@ public interface DeveloperRepository extends JpaRepository<Developer, UUID> {
     Developer findDeveloperById(UUID id);
 
     Developer findDeveloperByName(String name);
-
-    AfterCreationDeveloperDto save(CreateDeveloperDto createDeveloperDto);
 }

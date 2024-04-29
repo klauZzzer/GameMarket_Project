@@ -12,5 +12,5 @@ public interface GameService {
 
     void deleteGameById(UUID id);
 
-//    AfterCreationGameDto createGame(CreateGameDto createGameDto);
+    AfterCreationGameDto createGame(CreateGameDto createGameDto);
 }

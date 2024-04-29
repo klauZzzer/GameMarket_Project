@@ -1,8 +1,11 @@
 package org.example.gamemarket.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.gamemarket.entity.Game;
+import org.example.gamemarket.dto.AfterCreationDeveloperDto;
+import org.example.gamemarket.dto.AfterCreationGameDto;
+import org.example.gamemarket.dto.CreateDeveloperDto;
 import org.example.gamemarket.dto.CreateGameDto;
+import org.example.gamemarket.entity.Game;
 import org.example.gamemarket.service.GameService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +28,9 @@ public class GameController {
         gameService.deleteGameById(id);
     }
 
-//    @PostMapping("/createGame")
-//    public Game createGame(@RequestBody CreateGameDto request) {
-//        return null;
-//    }
+    @PostMapping("/create")
+    public AfterCreationGameDto createGame(@RequestBody CreateGameDto createGameDto) {
+        return gameService.createGame(createGameDto);
+    }
 
 }

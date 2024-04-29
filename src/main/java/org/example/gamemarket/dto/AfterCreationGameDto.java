@@ -15,7 +15,7 @@ public class AfterCreationGameDto {
 
     private int sales = 0;
 
-    private Set<Review> reviews;
+    private Set<Review> reviews = null;
 
 
 }
