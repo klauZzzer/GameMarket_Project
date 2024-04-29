@@ -6,8 +6,7 @@ import org.example.gamemarket.dto.CreateGameDto;
 import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.entity.Game;
 import org.example.gamemarket.entity.Review;
-import org.example.gamemarket.exception.ErrorMessage;
-import org.example.gamemarket.exception.GameDoesNotExistException;
+import org.example.gamemarket.exception.*;
 import org.example.gamemarket.mapper.GameMapper;
 import org.example.gamemarket.repository.DeveloperRepository;
 import org.example.gamemarket.repository.GameRepository;
@@ -21,10 +20,16 @@ import java.util.UUID;
 public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
+    private final GameMapper gameMapper;
 
     @Override
     public Game getGameById(UUID id) {
         return gameRepository.findGameById(id);
+    }
+
+    @Override
+    public Game getGameByName(String name) {
+        return gameRepository.findGameByName(name);
     }
 
     @Override
@@ -37,17 +42,44 @@ public class GameServiceImpl implements GameService {
         gameRepository.deleteById(id);
     }
 
-//    @Override
-//    public AfterCreationGameDto createGame(CreateGameDto createGameDto) {
-//        Game game = gameRepository.findGameByName(createGameDto.getName());
-//        if (game != null) {
-//        }
-//        UUID developerId = createGameDto.getDeveloper().getId();
-//        Developer developer = developerRepository.findDeveloperById(developerId);
-//        if (developer == null) {
-//        }
-//        Game entity = gameMapper.toEntity(createGameDto);
-//        Game afterCreationGame = gameRepository.save(entity);
-//        return gameMapper.toDto(afterCreationGame);
-//    }
+    @Override
+    public void updateGameById(UUID id, Game updatedGame) {
+        Game game = gameRepository.findGameById(id);
+        if (game == null) {
+            throw new GameDoesNotExistException(ErrorMessage.THIS_GAME_DOES_NOT_EXIST);
+        }
+        updatedGame.setId(game.getId());
+        if (updatedGame.getName() == null) {
+            updatedGame.setName(game.getName());
+        }
+        if (updatedGame.getOverallRating() == null) {
+            updatedGame.setOverallRating(game.getOverallRating());
+        }
+        if (updatedGame.getPrice() == null) {
+            updatedGame.setPrice(game.getPrice());
+        }
+        if (updatedGame.getSales() == null) {
+            updatedGame.setSales(game.getSales());
+        }
+        if (updatedGame.getDeveloper() == null) {
+            updatedGame.setDeveloper(game.getDeveloper());
+        }
+        if (updatedGame.getGenres() == null) {
+            updatedGame.setGenres(game.getGenres());
+        }
+        gameRepository.save(updatedGame);
+    }
+
+    @Override
+    public AfterCreationGameDto createGame(CreateGameDto createGameDto) {
+        Game game = gameRepository.findGameByName(createGameDto.getName());
+        if (game != null) {
+            throw new GameAlreadyExistException(ErrorMessage.THIS_GAME_ALREADY_EXIST);
+        }
+        Game entity = gameMapper.toEntity(createGameDto);
+        Game afterCreation = gameRepository.save(entity);
+        return gameMapper.toDto(afterCreation);
+    }
+
+
 }
