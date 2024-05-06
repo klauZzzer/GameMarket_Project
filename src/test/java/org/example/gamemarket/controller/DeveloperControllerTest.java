@@ -15,10 +15,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.time.LocalDate;
+
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql("db/schemaTest.sql")
-@Sql("db/dataTest.sql")
+@Sql("/db/schemaTest.sql")
+@Sql("/db/dataTest.sql")
 public class DeveloperControllerTest {
 
     @Autowired
@@ -28,17 +30,20 @@ public class DeveloperControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void createDeveloperPositiveTest() throws Exception {
+    public void createDeveloperTest() throws Exception {
         CreateDeveloperDto createDeveloperDto = new CreateDeveloperDto();
+        createDeveloperDto.setName("Valve");
+        createDeveloperDto.setCreationDate(LocalDate.parse("2006-11-09"));
         String json = objectMapper.writeValueAsString(createDeveloperDto);
         MvcResult result = mockMvc
                 .perform(MockMvcRequestBuilders.post("developer/create")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andReturn();
+        Assertions.assertEquals(200, result.getResponse().getStatus());
+
         String jsonResult = result.getResponse().getContentAsString();
         AfterCreationDeveloperDto creationDeveloperDto = objectMapper.readValue(jsonResult, AfterCreationDeveloperDto.class);
-        Assertions.assertEquals(200, result.getResponse().getStatus());
     }
 
 
