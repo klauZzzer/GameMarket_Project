@@ -63,6 +63,9 @@ public class DeveloperServiceImpl implements DeveloperService {
         if (developer != null) {
             throw new DeveloperAlreadyExistException(ErrorMessage.THIS_DEVELOPER_ALREADY_EXIST);
         }
+        if (createDeveloperDto.getId() == null) {
+            createDeveloperDto.setId(UUID.randomUUID());
+        }
         Developer entity = developerMapper.toEntity(createDeveloperDto);
         Developer afterCreation = developerRepository.save(entity);
         return developerMapper.toDto(afterCreation);

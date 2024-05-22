@@ -11,6 +11,7 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface GameMapper {
 
+    @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "price", source = "price")
     @Mapping(target = "developer", source = "developer")

@@ -76,6 +76,9 @@ public class GameServiceImpl implements GameService {
         if (game != null) {
             throw new GameAlreadyExistException(ErrorMessage.THIS_GAME_ALREADY_EXIST);
         }
+        if (createGameDto.getId() == null) {
+            createGameDto.setId(UUID.randomUUID());
+        }
         Game entity = gameMapper.toEntity(createGameDto);
         Game afterCreation = gameRepository.save(entity);
         return gameMapper.toDto(afterCreation);

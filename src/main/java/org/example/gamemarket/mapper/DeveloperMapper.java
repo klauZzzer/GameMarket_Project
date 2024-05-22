@@ -8,11 +8,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface DeveloperMapper {
 
+    @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
     @Mapping(target = "creationDate", source = "creationDate")
     Developer toEntity(CreateDeveloperDto createDeveloperDto);
 
-    @Mapping(target = "id", source = "id")
     @Mapping(target = "developedGames", source = "developedGames")
     AfterCreationDeveloperDto toDto(Developer afterCreation);
 

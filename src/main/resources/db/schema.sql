@@ -10,13 +10,13 @@ CREATE TABLE IF NOT EXISTS carts (
 );
 
 CREATE TABLE IF NOT EXISTS developers (
-                            id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                            id BINARY(16) PRIMARY KEY,
                             name VARCHAR(255) NOT NULL,
                             creation_date DATE
 );
 
 CREATE TABLE IF NOT EXISTS games (
-                       id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                       id BINARY(16) PRIMARY KEY,
                        name VARCHAR(255) NOT NULL,
                        overall_rating DECIMAL(2,1) DEFAULT 0.0,
                        price DECIMAL(10,2) NOT NULL,

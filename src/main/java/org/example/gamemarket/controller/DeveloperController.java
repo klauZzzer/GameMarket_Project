@@ -2,14 +2,19 @@ package org.example.gamemarket.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.gamemarket.annotation.UUIDFormatChecker;
 import org.example.gamemarket.dto.AfterCreationDeveloperDto;
 import org.example.gamemarket.dto.CreateDeveloperDto;
 import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.service.DeveloperService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Validated
 @RestController
 @RequestMapping("/developer")
 @RequiredArgsConstructor
@@ -18,13 +23,21 @@ public class DeveloperController {
     private final DeveloperService developerService;
 
     @GetMapping("/get/id/{id}")
-    public Developer getDeveloperById(@PathVariable("id") UUID id) {
-        return developerService.getDeveloperById(id);
+    public ResponseEntity<?> getDeveloperById(@UUIDFormatChecker @PathVariable("id") UUID id) {
+        Developer developer = developerService.getDeveloperById(id);
+        if (developer == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Developer not found");
+        }
+        return ResponseEntity.ok(developer);
     }
 
     @GetMapping("/get/name/{name}")
-    public Developer getDeveloperByName(@PathVariable("name") String name) {
-        return developerService.getDeveloperByName(name);
+    public ResponseEntity<?> getDeveloperByName(@PathVariable("name") String name) {
+        Developer developer = developerService.getDeveloperByName(name);
+        if (developer == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Developer not found");
+        }
+        return ResponseEntity.ok(developer);
     }
 
     @DeleteMapping("/delete/{id}")

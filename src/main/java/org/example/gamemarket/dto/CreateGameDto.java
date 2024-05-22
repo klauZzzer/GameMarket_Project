@@ -15,6 +15,8 @@ import java.util.UUID;
 @Setter
 public class CreateGameDto {
 
+    private UUID id;
+
     private String name;
 
     private BigDecimal price;

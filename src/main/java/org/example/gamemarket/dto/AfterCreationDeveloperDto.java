@@ -9,8 +9,6 @@ import java.util.UUID;
 @Data
 public class AfterCreationDeveloperDto {
 
-    private UUID id;
-
     private Set<Game> developedGames = null;
 
 }
