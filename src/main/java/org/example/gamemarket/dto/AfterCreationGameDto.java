@@ -9,6 +9,8 @@ import java.util.UUID;
 @Data
 public class AfterCreationGameDto {
 
+    private UUID id;
+
     private double overallRating = 0.0;
 
     private int sales = 0;

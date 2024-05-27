@@ -12,9 +12,8 @@ import java.util.UUID;
 @Setter
 public class CreateDeveloperDto {
 
-    private UUID id;
-
     private String name;
 
     private LocalDate creationDate;
+
 }

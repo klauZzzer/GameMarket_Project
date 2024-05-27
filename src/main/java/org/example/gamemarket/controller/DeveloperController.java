@@ -23,21 +23,13 @@ public class DeveloperController {
     private final DeveloperService developerService;
 
     @GetMapping("/get/id/{id}")
-    public ResponseEntity<?> getDeveloperById(@UUIDFormatChecker @PathVariable("id") UUID id) {
-        Developer developer = developerService.getDeveloperById(id);
-        if (developer == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Developer not found");
-        }
-        return ResponseEntity.ok(developer);
+    public Developer getDeveloperById(@UUIDFormatChecker @PathVariable("id") UUID id) {
+        return developerService.getDeveloperById(id);
     }
 
     @GetMapping("/get/name/{name}")
-    public ResponseEntity<?> getDeveloperByName(@PathVariable("name") String name) {
-        Developer developer = developerService.getDeveloperByName(name);
-        if (developer == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Developer not found");
-        }
-        return ResponseEntity.ok(developer);
+    public Developer getDeveloperByName(@PathVariable("name") String name) {
+        return developerService.getDeveloperByName(name);
     }
 
     @DeleteMapping("/delete/{id}")

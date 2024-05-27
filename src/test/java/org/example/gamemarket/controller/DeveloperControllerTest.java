@@ -1,13 +1,11 @@
 package org.example.gamemarket.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.gamemarket.dto.AfterCreationDeveloperDto;
 import org.example.gamemarket.dto.CreateDeveloperDto;
 import org.example.gamemarket.entity.Developer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.parallel.Execution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +19,7 @@ import java.time.LocalDate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Sql("/db/dropTable.sql")
 @Sql("/db/schemaTest.sql")
 @Sql("/db/dataTest.sql")
 public class DeveloperControllerTest {
@@ -74,10 +73,10 @@ public class DeveloperControllerTest {
 
     @Test
     public void updateDeveloperTest() throws Exception {
-        CreateDeveloperDto developerDto = new CreateDeveloperDto();
-        developerDto.setName("Valve");
-        developerDto.setCreationDate(LocalDate.parse("2006-11-09"));
-        String developerDtoJson = objectMapper.writeValueAsString(developerDto);
+        Developer developer = new Developer();
+        developer.setName("Valve");
+        developer.setCreationDate(LocalDate.parse("2006-11-09"));
+        String developerDtoJson = objectMapper.writeValueAsString(developer);
         MvcResult result = mockMvc
                 .perform(MockMvcRequestBuilders.post("/developer/update/fc698b8c-f835-4800-b633-2f7905bfa238")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -91,8 +90,8 @@ public class DeveloperControllerTest {
                 .andReturn();
         String jsonResult = result.getResponse().getContentAsString();
         Developer developerResult = objectMapper.readValue(jsonResult, Developer.class);
-        Assertions.assertEquals(developerDto.getName(), developerResult.getName());
-        Assertions.assertEquals(developerDto.getCreationDate(), developerResult.getCreationDate());
+        Assertions.assertEquals(developer.getName(), developerResult.getName());
+        Assertions.assertEquals(developer.getCreationDate(), developerResult.getCreationDate());
     }
 
     @Test
@@ -100,18 +99,24 @@ public class DeveloperControllerTest {
         CreateDeveloperDto createDeveloperDto = new CreateDeveloperDto();
         createDeveloperDto.setName("Valve");
         createDeveloperDto.setCreationDate(LocalDate.parse("2006-11-09"));
-        String json = objectMapper.writeValueAsString(createDeveloperDto);
+        String json1 = objectMapper.writeValueAsString(createDeveloperDto);
         MvcResult result = mockMvc
                 .perform(MockMvcRequestBuilders.post("/developer/create")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
+                        .content(json1))
                 .andReturn();
         Assertions.assertEquals(200, result.getResponse().getStatus());
 
         String jsonResult = result.getResponse().getContentAsString();
-        Developer developerResult = objectMapper.readValue(jsonResult, Developer.class);
-        Assertions.assertEquals(createDeveloperDto.getName(), developerResult.getName());
-        Assertions.assertEquals(createDeveloperDto.getCreationDate(), developerResult.getCreationDate());
+        AfterCreationDeveloperDto developerResult = objectMapper.readValue(jsonResult, AfterCreationDeveloperDto.class);
+        result = mockMvc
+                .perform(MockMvcRequestBuilders.get("/developer/get/id/" + developerResult.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+        String json2 = result.getResponse().getContentAsString();
+        Developer developer = objectMapper.readValue(json2, Developer.class);
+        Assertions.assertEquals(createDeveloperDto.getName(), developer.getName());
+        Assertions.assertEquals(createDeveloperDto.getCreationDate(), developer.getCreationDate());
     }
 
 

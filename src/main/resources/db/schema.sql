@@ -1,11 +1,30 @@
+DROP TABLE IF EXISTS carts_games;
+DROP TABLE IF EXISTS orders_games;
+DROP TABLE IF EXISTS promocodes_orders;
+DROP TABLE IF EXISTS roles_authorities;
+DROP TABLE IF EXISTS users_favorite_games;
+DROP TABLE IF EXISTS users_reviews;
+DROP TABLE IF EXISTS game_genre;
+
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS games;
+DROP TABLE IF EXISTS carts;
+DROP TABLE IF EXISTS authorities;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS genres;
+DROP TABLE IF EXISTS user_info;
+DROP TABLE IF EXISTS developers;
+DROP TABLE IF EXISTS promocodes;
 
 CREATE TABLE IF NOT EXISTS authorities (
-                             id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                             id BINARY(16) PRIMARY KEY,
                              authority VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS carts (
-                       id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                       id BINARY(16) PRIMARY KEY,
                        price DECIMAL(10,2) DEFAULT 0.0
 );
 
@@ -26,7 +45,7 @@ CREATE TABLE IF NOT EXISTS games (
 );
 
 CREATE TABLE IF NOT EXISTS promocodes (
-                             id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                             id BINARY(16) PRIMARY KEY,
                              type VARCHAR(255) NOT NULL,
                              code VARCHAR(255) NOT NULL,
                              discount INT NOT NULL,
@@ -36,18 +55,18 @@ CREATE TABLE IF NOT EXISTS promocodes (
 
 
 CREATE TABLE IF NOT EXISTS roles (
-                       id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                       id BINARY(16) PRIMARY KEY,
                        name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS user_info (
-                           id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                           id BINARY(16) PRIMARY KEY,
                            email VARCHAR(255) NOT NULL,
                            password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS users (
-                                id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                                id BINARY(16) PRIMARY KEY,
                                 nickname VARCHAR(255),
                                 balance DECIMAL(10,2),
                                 user_info_id BINARY(16),
@@ -57,7 +76,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS reviews (
-                                       id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                                       id BINARY(16) PRIMARY KEY,
                                        comment TEXT,
                                        stars VARCHAR(255) NOT NULL,
                                        game_id BINARY(16),
@@ -67,7 +86,7 @@ CREATE TABLE IF NOT EXISTS reviews (
 );
 
 CREATE TABLE IF NOT EXISTS orders (
-                                      id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                                      id BINARY(16) PRIMARY KEY,
                                       price DECIMAL(10,2) NOT NULL,
                                       user_id BINARY(16),
                                       promocode_id BINARY(16),
@@ -76,7 +95,7 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 CREATE TABLE genres (
-                        id BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+                        id BINARY(16) PRIMARY KEY,
                         name VARCHAR(255) NOT NULL
 );
 

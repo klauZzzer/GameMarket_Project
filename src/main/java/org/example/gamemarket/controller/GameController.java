@@ -1,13 +1,13 @@
 package org.example.gamemarket.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.gamemarket.dto.AfterCreationDeveloperDto;
+import org.example.gamemarket.annotation.UUIDFormatChecker;
 import org.example.gamemarket.dto.AfterCreationGameDto;
-import org.example.gamemarket.dto.CreateDeveloperDto;
 import org.example.gamemarket.dto.CreateGameDto;
-import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.entity.Game;
 import org.example.gamemarket.service.GameService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -20,7 +20,7 @@ public class GameController {
     private final GameService gameService;
 
     @GetMapping("/get/id/{id}")
-    public Game getGameById(@PathVariable("id") UUID id) {
+    public Game getGameById(@UUIDFormatChecker @PathVariable("id") UUID id) {
         return gameService.getGameById(id);
     }
 
