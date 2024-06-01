@@ -14,5 +14,10 @@
       "name": "spring.server.port",
       "type": "java.lang.String",
       "description": "Description for spring.server.port."
+    },
+    {
+      "name": "spring.swagger.packageName",
+      "type": "java.lang.String",
+      "description": "Description for spring.swagger.packageName."
     }
   ] }

@@ -41,11 +41,4 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.NOT_FOUND
         );
     }
-
-
-
-
-
-
-
 }

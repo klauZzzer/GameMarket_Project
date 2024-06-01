@@ -11,13 +11,20 @@ spring:
     hibernate:
       ddl-auto: none
 
-  sql:
-    init:
-      data-locations:
-        classpath:db/data.sql
-      schema-locations:
-        classpath:db/schema.sql
-      mode: always
+#  sql:
+#    init:
+#      data-locations:
+#        classpath:db/data.sql
+#      schema-locations:
+#        classpath:db/schema.sql
+#      mode: always
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
 
 server:
   port: 8081
+
+logging:
+  level:
+    root: DEBUG

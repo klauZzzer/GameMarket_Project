@@ -1,8 +1,8 @@
-package org.example.gamemarket.annotation;
+package org.example.gamemarket.validation.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import org.example.gamemarket.constraint.UUIDFormatCheckerConstraint;
+import org.example.gamemarket.validation.constraint.UUIDFormatCheckerConstraint;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,8 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UUIDFormatCheckerConstraint.class)
 public @interface UUIDFormatChecker {
-    String message() default "IT IS WRONG FORMAT";
-
+    String message() default "It is not UUID format";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

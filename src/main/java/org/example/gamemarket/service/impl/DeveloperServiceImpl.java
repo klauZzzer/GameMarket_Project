@@ -1,6 +1,5 @@
 package org.example.gamemarket.service.impl;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.gamemarket.dto.AfterCreationDeveloperDto;
 import org.example.gamemarket.dto.CreateDeveloperDto;
@@ -10,8 +9,10 @@ import org.example.gamemarket.exception.DeveloperDoesNotExistException;
 import org.example.gamemarket.exception.ErrorMessage;
 import org.example.gamemarket.mapper.DeveloperMapper;
 import org.example.gamemarket.repository.DeveloperRepository;
-import org.example.gamemarket.service.DeveloperService;
+import org.example.gamemarket.service.interfaces.DeveloperService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.UUID;
 
 @Service
@@ -21,6 +22,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     private final DeveloperRepository developerRepository;
     private final DeveloperMapper developerMapper;
     @Override
+    @Transactional
     public Developer getDeveloperById(UUID id) {
         Developer developer = developerRepository.findDeveloperById(id);
         if (developer == null) {
@@ -30,6 +32,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
+    @Transactional
     public Developer getDeveloperByName(String name) {
         Developer developer = developerRepository.findDeveloperByName(name);
         if (developer == null) {
@@ -39,6 +42,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
+    @Transactional
     public void deleteDeveloperById(UUID id) {
         Developer developer = developerRepository.findDeveloperById(id);
         if (developer == null) {
@@ -48,6 +52,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
+    @Transactional
     public void updateDeveloperById(UUID id, Developer updatedDeveloper) {
         Developer developer = developerRepository.findDeveloperById(id);
         if (developer == null) {

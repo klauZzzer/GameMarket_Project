@@ -1,4 +1,4 @@
-package org.example.gamemarket.service;
+package org.example.gamemarket.service.interfaces;
 
 import org.example.gamemarket.dto.AfterCreationDeveloperDto;
 import org.example.gamemarket.dto.CreateDeveloperDto;

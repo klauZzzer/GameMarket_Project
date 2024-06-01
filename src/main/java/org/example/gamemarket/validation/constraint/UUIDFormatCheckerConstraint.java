@@ -1,8 +1,8 @@
-package org.example.gamemarket.constraint;
+package org.example.gamemarket.validation.constraint;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.example.gamemarket.annotation.UUIDFormatChecker;
+import org.example.gamemarket.validation.annotation.UUIDFormatChecker;
 
 import java.util.Optional;
 import java.util.UUID;

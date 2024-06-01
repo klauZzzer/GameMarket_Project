@@ -1,3 +1,5 @@
+
+
 CREATE TABLE IF NOT EXISTS authorities (
                              id UUID PRIMARY KEY,
                              authority VARCHAR(255) NOT NULL

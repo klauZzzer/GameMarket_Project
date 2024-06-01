@@ -1,5 +1,4 @@
 package org.example.gamemarket.service.impl;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.gamemarket.dto.AfterCreationGameDto;
 import org.example.gamemarket.dto.CreateGameDto;
@@ -7,8 +6,10 @@ import org.example.gamemarket.entity.Game;
 import org.example.gamemarket.exception.*;
 import org.example.gamemarket.mapper.GameMapper;
 import org.example.gamemarket.repository.GameRepository;
-import org.example.gamemarket.service.GameService;
+import org.example.gamemarket.service.interfaces.GameService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class GameServiceImpl implements GameService {
     private final GameMapper gameMapper;
 
     @Override
+    @Transactional
     public Game getGameById(UUID id) {
         Game game = gameRepository.findGameById(id);
         if (game == null) {
@@ -29,6 +31,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public Game getGameByName(String name) {
         Game game = gameRepository.findGameByName(name);
         if (game == null) {
@@ -48,6 +51,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public void updateGameById(UUID id, Game updatedGame) {
         Game game = gameRepository.findGameById(id);
         if (game == null) {
