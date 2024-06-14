@@ -1,8 +1,9 @@
 INSERT INTO authorities (id, authority)
 VALUES
-    (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'R'),
-    (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), 'W'),
-    (UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'), 'I');
+    (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'READ'),
+    (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), 'UPDATE'),
+    (UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'), 'CREATE'),
+    (UUID_TO_BIN('0d6cdf0f-8334-4138-9ebb-e4d3e74815f2'), 'DELETE');
 INSERT INTO carts (id, price)
 VALUES
     (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), '0.00'),
@@ -23,11 +24,11 @@ INSERT INTO promocodes (id, type, code, discount, quantity)
 VALUES
     (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'DISCOUNT', 'SUMMER25', '25', '1000'),
     (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), 'GIFT_CARD', 'BIRTHDAY2024', '5', '500');
-INSERT INTO user_info (id, email, password)
+INSERT INTO user_info (id, email, login, password)
 VALUES
-    (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'admin@example.com', 'admin123'),
-    (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), 'user@example.com', 'user123'),
-    (UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'), 'developer@example.com', 'developer123');
+    (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'admin@example.com', 'adminLogin', '$2a$10$yHSiJaorTVnDtMa.OZbkquORqKOKNU8pAuKFggIb1rmGTBVlhXjE6'),
+    (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), 'user@example.com', 'userLogin', '$2a$10$fpkpmgFpiTHNW4SFBezqneqfgEBprl8hF9XEuJi6XI5ysPzUuOd56'),
+    (UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'), 'developer@example.com', 'developerLogin', '$2a$10$7dj60lz2zP/bwNjFrxNKj.mCd91MyrCoQwZT5obOB46wlKjXHS9Sa');
 INSERT INTO users (id, nickname, balance, user_info_id, cart_id)
 VALUES
     (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'user1', 100.00, UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238')),
@@ -43,7 +44,7 @@ VALUES
     (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'Great game!', 'S5', UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238')),
     (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), 'WOW, BEAUTIFUL', 'S5', UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6')),
     (UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'), 'Enjoyed it!', 'S4', UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'), UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'));
-INSERT INTO roles (id, name)
+INSERT INTO roles (id, role_name)
 VALUES
     (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), 'ADMIN'),
     (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), 'USER'),
@@ -57,6 +58,11 @@ VALUES
     (UUID_TO_BIN('09e76e34-c5b5-48e4-853d-30181ef0c9d3'), 'COOP'),
     (UUID_TO_BIN('3e64d23d-c6d9-4751-99ae-72cad59e99bb'), 'OPEN_WORLD'),
     (UUID_TO_BIN('19819463-3c34-4b82-b058-a40a8b2a78b4'), 'INTERACTIVE');
+INSERT INTO users_roles (user_info_id, role_id)
+VALUES
+    (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238')),
+    (UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6'), UUID_TO_BIN('5d747ad1-8fc0-471f-8d78-54fa98fd5eb6')),
+    (UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'), UUID_TO_BIN('93de1a91-9de3-4126-9981-eec527bb998b'));
 INSERT INTO carts_games (cart_id, game_id)
 VALUES
     (UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238'), UUID_TO_BIN('fc698b8c-f835-4800-b633-2f7905bfa238')),

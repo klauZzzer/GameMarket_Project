@@ -3,28 +3,17 @@ spring:
     banner-mode: off
 
   datasource:
-    url: ${DATASOURCE_URL}
-    username: ${DATASOURCE_USERNAME}
-    password: ${DATASOURCE_PASSWORD}
+    url: jdbc:mysql://${LOCALHOST}/${DB_NAME}?allowMultiQueries=true
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: none
-
-#  sql:
-#    init:
-#      data-locations:
-#        classpath:db/data.sql
-#      schema-locations:
-#        classpath:db/schema.sql
-#      mode: always
 
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.xml
 
 server:
   port: 8081
-
-logging:
-  level:
-    root: DEBUG

@@ -1,5 +1,6 @@
 package org.example.gamemarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,8 @@ public class Role {
     private UUID id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "name")
-    private RoleName name;
+    @Column(name = "role_name")
+    private RoleName roleName;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "roles_authorities",
@@ -37,19 +38,19 @@ public class Role {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(id, role.id) && name == role.name;
+        return Objects.equals(id, role.id) && roleName == role.roleName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, roleName);
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", name=" + name +
+                ", roleName=" + roleName +
                 '}';
     }
 }

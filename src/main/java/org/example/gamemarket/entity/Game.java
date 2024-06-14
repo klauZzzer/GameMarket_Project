@@ -1,6 +1,7 @@
 package org.example.gamemarket.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,8 +55,9 @@ public class Game {
 
     @JsonIgnore
     @OneToMany(mappedBy = "game",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "game-reviews")
     private Set<Review> reviews;
 
     @Override

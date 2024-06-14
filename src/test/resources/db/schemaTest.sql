@@ -38,12 +38,13 @@ CREATE TABLE IF NOT EXISTS promocodes (
 
 CREATE TABLE IF NOT EXISTS roles (
                        id UUID PRIMARY KEY,
-                       name VARCHAR(255) NOT NULL
+                       role_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS user_info (
                            id UUID PRIMARY KEY,
                            email VARCHAR(255) NOT NULL,
+                           login VARCHAR(255) NOT NULL,
                            password VARCHAR(255) NOT NULL
 );
 
@@ -80,6 +81,15 @@ CREATE TABLE IF NOT EXISTS genres (
                         id UUID PRIMARY KEY,
                         name VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS users_roles (
+                                           user_info_id UUID NOT NULL,
+    role_id UUID NOT NULL,
+    PRIMARY KEY (user_info_id, role_id),
+    FOREIGN KEY (user_info_id) REFERENCES user_info(id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS carts_games (
                                            cart_id UUID NOT NULL,
                                            game_id UUID NOT NULL,

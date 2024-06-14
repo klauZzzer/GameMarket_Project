@@ -1,9 +1,11 @@
 package org.example.gamemarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.gamemarket.entity.enums.AuthorityName;
 
 import java.util.Objects;
 import java.util.Set;
@@ -21,8 +23,9 @@ public class Authority {
     @Column(name = "id")
     private UUID id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "authority")
-    private String authority;
+    private AuthorityName authorityName;
 
     @ManyToMany(mappedBy = "authorities",
             fetch = FetchType.LAZY)
@@ -32,20 +35,20 @@ public class Authority {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Authority authority1 = (Authority) o;
-        return Objects.equals(id, authority1.id) && Objects.equals(authority, authority1.authority);
+        Authority authority = (Authority) o;
+        return Objects.equals(id, authority.id) && authorityName == authority.authorityName;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, authority);
+        return Objects.hash(id, authorityName);
     }
 
     @Override
     public String toString() {
         return "Authority{" +
                 "id=" + id +
-                ", authority='" + authority + '\'' +
+                ", authorityName=" + authorityName +
                 '}';
     }
 }

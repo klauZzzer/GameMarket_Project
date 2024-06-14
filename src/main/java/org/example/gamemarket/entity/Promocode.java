@@ -36,7 +36,7 @@ public class Promocode {
     private Integer quantity;
 
     @OneToMany(mappedBy = "promocode",
-            fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private Set<Order> orders;
 
     @Override

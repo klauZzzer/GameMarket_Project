@@ -1,5 +1,7 @@
 package org.example.gamemarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties(value = {"userInfo", "shoppingCart", "orders", "favoriteGames", "reviews"})
 @Table(name = "users")
 public class User {
 
@@ -46,7 +49,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> favoriteGames;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Review> reviews;
 
     @Override

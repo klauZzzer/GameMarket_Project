@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -22,6 +23,7 @@ import java.time.LocalDate;
 @Sql("/db/dropTable.sql")
 @Sql("/db/schemaTest.sql")
 @Sql("/db/dataTest.sql")
+@WithMockUser(username = "adminLogin", password = "admin123", roles = "ADMIN")
 public class DeveloperControllerTest {
 
     @Autowired
@@ -118,7 +120,4 @@ public class DeveloperControllerTest {
         Assertions.assertEquals(createDeveloperDto.getName(), developer.getName());
         Assertions.assertEquals(createDeveloperDto.getCreationDate(), developer.getCreationDate());
     }
-
-
-
 }

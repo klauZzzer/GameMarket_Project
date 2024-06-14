@@ -26,12 +26,12 @@ public class Order {
     private BigDecimal price;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "order_games",
+    @JoinTable(name = "orders_games",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> games;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 

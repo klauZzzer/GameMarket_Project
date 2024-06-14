@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@RequestMapping(method = RequestMethod.PUT)
+@RequestMapping(method = RequestMethod.POST)
 @Operation(
         summary = "Update game",
         description = "Update game and return",

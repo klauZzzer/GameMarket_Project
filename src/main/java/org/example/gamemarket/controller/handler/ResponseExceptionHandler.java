@@ -1,4 +1,4 @@
-package org.example.gamemarket.controller;
+package org.example.gamemarket.controller.handler;
 
 import org.example.gamemarket.exception.*;
 import org.springframework.http.HttpStatus;

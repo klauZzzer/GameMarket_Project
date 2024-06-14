@@ -1,5 +1,8 @@
 package org.example.gamemarket.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,11 +16,15 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties({"user", "roles"})
 @Table(name = "user_info")
 public class UserInfo {
     @Id
     @Column(name = "id")
     private UUID id;
+
+    @Column(name = "login")
+    private String login;
 
     @Column(name = "email")
     private String email;
@@ -25,8 +32,7 @@ public class UserInfo {
     @Column(name = "password")
     private String password;
 
-    @OneToOne(mappedBy = "userInfo", fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "userInfo", fetch = FetchType.LAZY)
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)

@@ -20,7 +20,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@RequestMapping(method = RequestMethod.PUT)
+@RequestMapping(method = RequestMethod.POST)
 @Operation(
         summary = "Update developer",
         description = "Update developer and return",

@@ -1,7 +1,8 @@
 INSERT INTO authorities (id, authority)
-VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'R'),
-      (X'5d747ad18fc0471f8d7854fa98fd5eb6', 'W'),
-      (X'93de1a919de341269981eec527bb998b', 'I');
+VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'READ'),
+      (X'5d747ad18fc0471f8d7854fa98fd5eb6', 'UPDATE'),
+      (X'93de1a919de341269981eec527bb998b', 'CREATE'),
+      (X'0d6cdf0f833441389ebbe4d3e74815f2', 'DELETE');
 
 INSERT INTO carts (id, price)
 VALUES(X'fc698b8cf8354800b6332f7905bfa238', '0.00'),
@@ -22,10 +23,12 @@ INSERT INTO promocodes (id, type, code, discount, quantity)
 VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'DISCOUNT', 'SUMMER25', '25', '1000'),
       (X'5d747ad18fc0471f8d7854fa98fd5eb6', 'GIFT_CARD', 'BIRTHDAY2024', '5', '500');
 
-INSERT INTO user_info (id, email, password)
-VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'admin@example.com', 'admin123'),
-      (X'5d747ad18fc0471f8d7854fa98fd5eb6', 'user@example.com', 'user123'),
-      (X'93de1a919de341269981eec527bb998b', 'developer@example.com', 'developer123');
+INSERT INTO user_info (id, email, login, password)
+VALUES
+    (X'fc698b8cf8354800b6332f7905bfa238', 'admin@example.com', 'adminLogin', '$2a$10$yHSiJaorTVnDtMa.OZbkquORqKOKNU8pAuKFggIb1rmGTBVlhXjE6'),
+    (X'5d747ad18fc0471f8d7854fa98fd5eb6', 'user@example.com', 'userLogin', '$2a$10$fpkpmgFpiTHNW4SFBezqneqfgEBprl8hF9XEuJi6XI5ysPzUuOd56'),
+    (X'93de1a919de341269981eec527bb998b', 'developer@example.com', 'developerLogin', '$2a$10$7dj60lz2zP/bwNjFrxNKj.mCd91MyrCoQwZT5obOB46wlKjXHS9Sa');
+
 
 INSERT INTO users (id, nickname, balance, user_info_id, cart_id)
 VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'user1', 100.00, X'fc698b8cf8354800b6332f7905bfa238', X'fc698b8cf8354800b6332f7905bfa238'),
@@ -42,7 +45,7 @@ VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'Great game!', 'S5', X'fc698b8cf8354
       (X'5d747ad18fc0471f8d7854fa98fd5eb6', 'WOW, BEAUTIFUL', 'S5', X'5d747ad18fc0471f8d7854fa98fd5eb6', X'5d747ad18fc0471f8d7854fa98fd5eb6'),
       (X'93de1a919de341269981eec527bb998b', 'Enjoyed it!', 'S4', X'93de1a919de341269981eec527bb998b', X'93de1a919de341269981eec527bb998b');
 
-INSERT INTO roles (id, name)
+INSERT INTO roles (id, role_name)
 VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'ADMIN'),
       (X'5d747ad18fc0471f8d7854fa98fd5eb6', 'USER'),
       (X'93de1a919de341269981eec527bb998b', 'DEVELOPER');
@@ -55,6 +58,13 @@ VALUES(X'fc698b8cf8354800b6332f7905bfa238', 'ACTION'),
       (X'09e76e34c5b548e4853d30181ef0c9d3', 'COOP'),
       (X'3e64d23dc6d9475199ae72cad59e99bb', 'OPEN_WORLD'),
       (X'198194633c344b82b058a40a8b2a78b4', 'INTERACTIVE');
+
+INSERT INTO users_roles (user_info_id, role_id)
+VALUES
+    (X'fc698b8cf8354800b6332f7905bfa238', X'fc698b8cf8354800b6332f7905bfa238'),
+    (X'5d747ad18fc0471f8d7854fa98fd5eb6', X'5d747ad18fc0471f8d7854fa98fd5eb6'),
+    (X'93de1a919de341269981eec527bb998b', X'93de1a919de341269981eec527bb998b');
+
 INSERT INTO carts_games (cart_id, game_id)
 VALUES
     (X'fc698b8cf8354800b6332f7905bfa238', X'fc698b8cf8354800b6332f7905bfa238'),
@@ -74,6 +84,9 @@ VALUES (NULL, X'fc698b8cf8354800b6332f7905bfa238'),
 INSERT INTO roles_authorities (role_id, authority_id)
 VALUES
     (X'fc698b8cf8354800b6332f7905bfa238', X'fc698b8cf8354800b6332f7905bfa238'),
+    (X'fc698b8cf8354800b6332f7905bfa238', X'5d747ad18fc0471f8d7854fa98fd5eb6'),
+    (X'fc698b8cf8354800b6332f7905bfa238', X'93de1a919de341269981eec527bb998b'),
+    (X'fc698b8cf8354800b6332f7905bfa238', X'0d6cdf0f833441389ebbe4d3e74815f2'),
     (X'5d747ad18fc0471f8d7854fa98fd5eb6', X'5d747ad18fc0471f8d7854fa98fd5eb6'),
     (X'93de1a919de341269981eec527bb998b', X'93de1a919de341269981eec527bb998b');
 
