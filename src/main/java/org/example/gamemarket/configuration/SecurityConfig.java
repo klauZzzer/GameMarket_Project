@@ -10,6 +10,9 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -42,15 +45,24 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(SWAGGER_LIST).permitAll()
-                        .requestMatchers(ADMIN_LIST).hasRole(ADMIN)
-                        .requestMatchers(ANYROLES_LIST).hasAnyRole(ADMIN, USER, DEVELOPER, GUEST, BANNED)
-                        .requestMatchers("/developer/delete/**", "/developer/update/**").hasAnyRole(ADMIN, DEVELOPER)
+                        .requestMatchers(ANYROLES_LIST).permitAll()
+                        .requestMatchers(ADMIN_LIST).hasRole("ADMIN")
+                        .requestMatchers("/developer/delete/**", "/developer/update/**").hasAnyRole("ADMIN", "DEVELOPER")
                         .anyRequest().authenticated())
                 .headers(headers -> headers.cacheControl(Customizer.withDefaults()).disable())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
                 .logout(Customizer.withDefaults())
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(true)
+                        .sessionRegistry(sessionRegistry()))
                 .exceptionHandling(handler -> handler.accessDeniedHandler(new AccessDeniedHandlerImpl()))
                 .build();
+    }
+
+    private SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
     }
 }

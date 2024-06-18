@@ -3,9 +3,9 @@ spring:
     banner-mode: off
 
   datasource:
-    url: jdbc:mysql://${LOCALHOST}/${DB_NAME}?allowMultiQueries=true
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:game_market_db}?allowMultiQueries=true
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:Yulia2112}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -14,6 +14,10 @@ spring:
 
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.xml
+
+logging:
+  level:
+    root: debug
 
 server:
   port: 8081

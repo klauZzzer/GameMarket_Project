@@ -1,6 +1,5 @@
 package org.example.gamemarket.service.interfaces;
 
-import org.example.gamemarket.entity.User;
 import org.example.gamemarket.entity.UserInfo;
 
 import java.util.UUID;

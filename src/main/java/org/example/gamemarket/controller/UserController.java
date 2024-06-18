@@ -2,7 +2,6 @@ package org.example.gamemarket.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.example.gamemarket.annotation.GetDeveloperByName;
 import org.example.gamemarket.annotation.GetUserById;
 import org.example.gamemarket.annotation.GetUserByNickname;
 import org.example.gamemarket.entity.User;

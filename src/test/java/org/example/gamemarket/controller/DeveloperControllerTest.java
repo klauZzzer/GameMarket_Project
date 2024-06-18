@@ -98,9 +98,7 @@ public class DeveloperControllerTest {
 
     @Test
     public void createDeveloperTest() throws Exception {
-        CreateDeveloperDto createDeveloperDto = new CreateDeveloperDto();
-        createDeveloperDto.setName("Valve");
-        createDeveloperDto.setCreationDate(LocalDate.parse("2006-11-09"));
+        CreateDeveloperDto createDeveloperDto = new CreateDeveloperDto("Valve", LocalDate.parse("2006-11-09"));
         String json1 = objectMapper.writeValueAsString(createDeveloperDto);
         MvcResult result = mockMvc
                 .perform(MockMvcRequestBuilders.post("/developer/create")

@@ -1,130 +1,135 @@
 @startuml
 
-entity Authorities {
-    * id : BINARY(16)
-    * authority : VARCHAR(255)
+entity authorities {
+  + id: BINARY(16)
+  + authority: VARCHAR(255)
 }
 
-entity Carts {
-    * id : BINARY(16)
-    * price : DECIMAL(10,2)
+entity carts {
+  + id: BINARY(16)
+  + price: DECIMAL(10,2)
 }
 
-entity Developers {
-    * id : BINARY(16)
-    * name : VARCHAR(255)
-    * creation_date : DATE
+entity developers {
+  + id: BINARY(16)
+  + name: VARCHAR(255)
+  + creation_date: DATE
 }
 
-entity Games {
-    * id : BINARY(16)
-    * name : VARCHAR(255)
-    * overall_rating : DECIMAL(2,1)
-    * price : DECIMAL(10,2)
-    * sales : INT
-    * developer_id : BINARY(16)
+entity games {
+  + id: BINARY(16)
+  + name: VARCHAR(255)
+  + overall_rating: DECIMAL(2,1)
+  + price: DECIMAL(10,2)
+  + sales: INT
 }
 
-entity Promocodes {
-    * id : BINARY(16)
-    * type : VARCHAR(255)
-    * code : VARCHAR(255)
-    * discount : INT
-    * quantity : INT
+entity promocodes {
+  + id: BINARY(16)
+  + type: VARCHAR(255)
+  + code: VARCHAR(255)
+  + discount: INT
+  + quantity: INT
 }
 
-entity Roles {
-    * id : BINARY(16)
-    * name : VARCHAR(255)
+entity roles {
+  + id: BINARY(16)
+  + role_name: VARCHAR(255)
 }
 
-entity UserInfo {
-    * id : BINARY(16)
-    * email : VARCHAR(255)
-    * password : VARCHAR(255)
+entity user_info {
+  + id: BINARY(16)
+  + login: VARCHAR(255)
+  + email: VARCHAR(255)
+  + password: VARCHAR(255)
 }
 
-entity Users {
-    * id : BINARY(16)
-    * nickname : VARCHAR(255)
-    * balance : DECIMAL(10,2)
-    * user_info_id : BINARY(16)
-    * cart_id : BINARY(16)
+entity users {
+  + id: BINARY(16)
+  + nickname: VARCHAR(255)
+  + balance: DECIMAL(10,2)
 }
 
-entity Reviews {
-    * id : BINARY(16)
-    * comment : TEXT
-    * stars : VARCHAR(255)
-    * game_id : BINARY(16)
-    * user_id : BINARY(16)
+entity reviews {
+  + id: BINARY(16)
+  + comment: TEXT
+  + stars: VARCHAR(255)
 }
 
-entity Orders {
-    * id : BINARY(16)
-    * price : DECIMAL(10,2)
-    * user_id : BINARY(16)
-    * promocode_id : BINARY(16)
+entity orders {
+  + id: BINARY(16)
+  + price: DECIMAL(10,2)
 }
 
-entity Genres {
-    * id : BINARY(16)
-    * name : VARCHAR(255)
+entity genres {
+  + id: BINARY(16)
+  + name: VARCHAR(255)
 }
 
-entity CartsGames {
-    * cart_id : BINARY(16)
-    * game_id : BINARY(16)
+entity user_info_role {
+  user_info_id: BINARY(16)
+  role_id: BINARY(16)
 }
 
-entity OrdersGames {
-    * order_id : BINARY(16)
-    * game_id : BINARY(16)
+entity carts_games {
+  cart_id: BINARY(16)
+  game_id: BINARY(16)
 }
 
-entity PromocodesOrders {
-    * promocode_id : BINARY(16)
-    * order_id : BINARY(16)
+entity orders_games {
+  order_id: BINARY(16)
+  game_id: BINARY(16)
 }
 
-entity RolesAuthorities {
-    * role_id : BINARY(16)
-    * authority_id : BINARY(16)
+entity promocodes_orders {
+  promocode_id: BINARY(16)
+  order_id: BINARY(16)
 }
 
-entity UsersFavoriteGames {
-    * user_id : BINARY(16)
-    * game_id : BINARY(16)
+entity roles_authorities {
+  role_id: BINARY(16)
+  authority_id: BINARY(16)
 }
 
-entity UsersReviews {
-    * user_id : BINARY(16)
-    * review_id : BINARY(16)
+entity users_favorite_games {
+  user_id: BINARY(16)
+  game_id: BINARY(16)
 }
 
-entity GameGenre {
-    * game_id : BINARY(16)
-    * genre_id : BINARY(16)
+entity users_reviews {
+  user_id: BINARY(16)
+  review_id: BINARY(16)
 }
 
-Users }|--|| UserInfo : has
-Users }|--|| Carts : has
-Reviews }|--|| Games : reviews
-Reviews }|--|| Users : reviewed by
-Games }|--|| Developers : developed by
-CartsGames }|--|| Carts : part of
-CartsGames }|--|| Games : contains
-OrdersGames }|--|| Orders : part of
-OrdersGames }|--|| Games : contains
-PromocodesOrders }|--|| Promocodes : contains
-PromocodesOrders }|--|| Orders : contains
-RolesAuthorities }|--|| Roles : role
-RolesAuthorities }|--|| Authorities : authority
-UsersFavoriteGames }|--|| Users : likes
-UsersFavoriteGames }|--|| Games : liked
-UsersReviews }|--|| Users : reviews
-UsersReviews }|--|| Reviews : reviewed
-GameGenre }|--|| Games : has
-GameGenre }|--|| Genres : belongs to
+entity game_genre {
+  game_id: BINARY(16)
+  genre_id: BINARY(16)
+}
+
+
+  users -- user_info : user_info_id
+  users -- carts : cart_id
+  reviews -- games : game_id
+  reviews -- users : user_id
+  orders -- users : user_id
+  orders -- promocodes : promocode_id
+  games -- developers : developer_id
+  user_info_role -- user_info : user_info_id
+  user_info_role -- roles : role_id
+  carts_games -- carts : cart_id
+  carts_games -- games : game_id
+  orders_games -- orders : order_id
+  orders_games -- games : game_id
+  promocodes_orders -- promocodes : promocode_id
+  promocodes_orders -- orders : order_id
+  roles_authorities -- roles : role_id
+  roles_authorities -- authorities : authority_id
+  users_favorite_games -- users : user_id
+  users_favorite_games -- games : game_id
+  users_reviews -- users : user_id
+  users_reviews -- reviews : review_id
+  game_genre -- games : game_id
+  game_genre -- genres : genre_id
+
 
 @enduml

@@ -2,7 +2,6 @@ package org.example.gamemarket.service.interfaces;
 
 import org.example.gamemarket.dto.AfterCreationGameDto;
 import org.example.gamemarket.dto.CreateGameDto;
-import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.entity.Game;
 
 import java.util.UUID;

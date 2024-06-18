@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.example.gamemarket.entity.Game;
 import org.example.gamemarket.entity.UserInfo;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +33,7 @@ import java.lang.annotation.Target;
                         examples = {
                                 @ExampleObject(
                                         name = "Request with existing login",
-                                        value = "userLogin1"
+                                        value = "userLogin"
                                 ),
                                 @ExampleObject(
                                         name = "Request with non-existing login",

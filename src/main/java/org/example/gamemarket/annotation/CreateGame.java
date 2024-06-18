@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.entity.Game;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,18 +33,18 @@ import java.lang.annotation.Target;
                                 @ExampleObject(name = "Good request",
                                 value = """
                                         {
-                                            "name" : "Dota 2",
-                                            "price" : "00.00",
-                                            "developer" : null,
-                                            "genres" : null,
+                                            "name": "Dota 2",
+                                            "price": 0.00,
+                                            "developer": null,
+                                            "genres": []
                                         }"""),
                                 @ExampleObject(name = "Request when game already exist",
                                 value = """
                                         {
-                                            "name" : "Cyberpunk 2077",
-                                            "price" : "59.99",
-                                            "developer" : null,
-                                            "genres" : null,
+                                            "name": "Cyberpunk 2077",
+                                            "price": "59.99",
+                                            "developer": null,
+                                            "genres": []
                                         }""")
                         }
                 )

@@ -1,10 +1,8 @@
 package org.example.gamemarket.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.example.gamemarket.entity.User;
 import org.example.gamemarket.entity.UserInfo;
 import org.example.gamemarket.exception.ErrorMessage;
-import org.example.gamemarket.exception.UserDoesNotExistException;
 import org.example.gamemarket.exception.UserInfoDoesNotExistException;
 import org.example.gamemarket.repository.UserInfoRepository;
 import org.example.gamemarket.service.interfaces.UserInfoService;

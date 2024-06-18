@@ -1,19 +1,6 @@
 package org.example.gamemarket.security.security_util;
 
 public class RoleLists {
-
-    public static final String SWAGGER = "SWAGGER";
-
-    public static final String USER = "USER";
-
-    public static final String ADMIN = "ADMIN";
-
-    public static final String DEVELOPER = "DEVELOPER";
-
-    public static final String GUEST = "GUEST";
-
-    public static final String BANNED = "BANNED";
-
     public static final String[] SWAGGER_LIST = {
             "/v2/api-docs",
             "/v3/api-docs/**",

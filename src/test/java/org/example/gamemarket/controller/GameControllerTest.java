@@ -98,11 +98,7 @@ public class GameControllerTest {
 
     @Test
     public void createGameTest() throws Exception {
-        CreateGameDto createGameDto = new CreateGameDto();
-        createGameDto.setName("Dota 3");
-        createGameDto.setPrice(BigDecimal.valueOf(0.00));
-        createGameDto.setDeveloper(null);
-        createGameDto.setGenres(null);
+        CreateGameDto createGameDto = new CreateGameDto("Dota 3", BigDecimal.valueOf(0.00), null, null);
         String json1 = objectMapper.writeValueAsString(createGameDto);
         MvcResult result = mockMvc
                 .perform(MockMvcRequestBuilders.post("/game/create")

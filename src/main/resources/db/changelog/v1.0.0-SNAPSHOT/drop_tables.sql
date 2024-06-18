@@ -1,4 +1,4 @@
-# DROP TABLE IF EXISTS users_roles;
+# DROP TABLE IF EXISTS user_info_role;
 # DROP TABLE IF EXISTS carts_games;
 # DROP TABLE IF EXISTS orders_games;
 # DROP TABLE IF EXISTS promocodes_orders;

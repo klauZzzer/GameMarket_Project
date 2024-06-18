@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS promocodes (
     type VARCHAR(255) NOT NULL,
     code VARCHAR(255) NOT NULL,
     discount INT NOT NULL,
-    quantity INT NOT NULL
+    quantity INT
     );
 
 CREATE TABLE IF NOT EXISTS roles (
@@ -46,10 +46,10 @@ CREATE TABLE IF NOT EXISTS user_info (
 
 CREATE TABLE IF NOT EXISTS users (
                                      id BINARY(16) PRIMARY KEY,
-    nickname VARCHAR(255),
-    balance DECIMAL(10,2),
-    user_info_id BINARY(16),
-    cart_id BINARY(16),
+    nickname VARCHAR(255) NOT NULL,
+    balance DECIMAL(10,2) DEFAULT 0.0,
+    user_info_id BINARY(16) NOT NULL,
+    cart_id BINARY(16) NOT NULL,
     FOREIGN KEY (user_info_id) REFERENCES user_info(id),
     FOREIGN KEY (cart_id) REFERENCES carts(id)
     );
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS reviews (
                                        id BINARY(16) PRIMARY KEY,
     comment TEXT,
     stars VARCHAR(255) NOT NULL,
-    game_id BINARY(16),
-    user_id BINARY(16),
+    game_id BINARY(16) NOT NULL,
+    user_id BINARY(16) NOT NULL,
     FOREIGN KEY (game_id) REFERENCES games(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
     );
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS reviews (
 CREATE TABLE IF NOT EXISTS orders (
                                       id BINARY(16) PRIMARY KEY,
     price DECIMAL(10,2) NOT NULL,
-    user_id BINARY(16),
+    user_id BINARY(16) NOT NULL,
     promocode_id BINARY(16),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (promocode_id) REFERENCES promocodes(id)
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS genres (
     name VARCHAR(255) NOT NULL
     );
 
-CREATE TABLE IF NOT EXISTS users_roles (
+CREATE TABLE IF NOT EXISTS user_info_role (
                                            user_info_id BINARY(16) NOT NULL,
     role_id BINARY(16) NOT NULL,
     PRIMARY KEY (user_info_id, role_id),

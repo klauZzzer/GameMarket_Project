@@ -175,14 +175,18 @@
 						</goals>
 						<configuration>
 							<excludes>
-								<exclude>org/**/entity/*</exclude>
-								<exclude>org/**/repository/*</exclude>
-								<exclude>org/**/exception/*</exclude>
-								<exclude>org/**/mapper/*</exclude>
-								<exclude>org/**/constraint/*</exclude>
+								<exclude>org/**/configuration/*</exclude>
 								<exclude>org/**/dto/*</exclude>
+								<exclude>org/**/exception/*</exclude>
+								<exclude>org/example/gamemarket/controller/handler/*</exclude>
+								<exclude>org/**/entity/*</exclude>
+								<exclude>org/**/mapper/*</exclude>
+								<exclude>org/**/security/*</exclude>
+								<exclude>org/**/security/security_util/*</exclude>
 								<exclude>org/**/annotation/*</exclude>
 								<exclude>org/**/enums/*</exclude>
+								<exclude>org/**/annotation/*</exclude>
+								<exclude>org/**/aspect/*</exclude>
 								<exclude>org/**/GameMarketApplication.class</exclude>
 							</excludes>
 						</configuration>

@@ -1,18 +1,17 @@
 package org.example.gamemarket.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.entity.Genre;
-import org.example.gamemarket.entity.Review;
 
 import java.math.BigDecimal;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class CreateGameDto {
 
     private String name;
@@ -22,5 +21,4 @@ public class CreateGameDto {
     private Developer developer;
 
     private Set<Genre> genres;
-
 }

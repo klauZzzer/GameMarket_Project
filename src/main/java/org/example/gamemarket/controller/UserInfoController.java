@@ -1,14 +1,10 @@
 package org.example.gamemarket.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.gamemarket.annotation.GetDeveloperById;
-import org.example.gamemarket.annotation.GetDeveloperByName;
 import org.example.gamemarket.annotation.GetUserInfoById;
 import org.example.gamemarket.annotation.GetUserInfoByLogin;
-import org.example.gamemarket.entity.User;
 import org.example.gamemarket.entity.UserInfo;
 import org.example.gamemarket.service.interfaces.UserInfoService;
-import org.example.gamemarket.service.interfaces.UserService;
 import org.example.gamemarket.validation.annotation.UUIDFormatChecker;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;

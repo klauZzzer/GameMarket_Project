@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.example.gamemarket.entity.Developer;
 import org.example.gamemarket.entity.Game;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +33,7 @@ import java.lang.annotation.Target;
                         examples = {
                                 @ExampleObject(
                                         name = "Request with existing ID",
-                                        value = "5d747ad1-8fc0-471f-8d78-54fa98fd5eb6"
+                                        value = "fc698b8c-f835-4800-b633-2f7905bfa238"
                                 ),
                                 @ExampleObject(
                                         name = "Request with non-existing ID",
